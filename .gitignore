@@ -1,0 +1,21 @@
+# Maven / derleme çıktıları
+target/
+dist/
+spektra-runtime/
+*.class
+
+# jpackage / jlink ara ürünleri
+*.jmod
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# İşletim sistemi
+.DS_Store
+Thumbs.db
+
+# Uygulama çıktıları (dışa aktarılan görüntü / kaydedilen senaryo)
+*.spx
+spektra-*.png

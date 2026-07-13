@@ -1,0 +1,120 @@
+<svg viewBox="0 0 1280 350" width="1280" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SPEKTRA — Elektronik Harp RF Spektrum Simülatörü">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0C1626"/>
+    <stop offset="1" stop-color="#070B12"/>
+  </linearGradient>
+  <linearGradient id="amberFill" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F2B24B" stop-opacity="0.42"/>
+    <stop offset="1" stop-color="#F2B24B" stop-opacity="0.02"/>
+  </linearGradient>
+  <linearGradient id="sweepGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0"   stop-color="#F2B24B" stop-opacity="0"/>
+    <stop offset="0.7" stop-color="#F2B24B" stop-opacity="0.05"/>
+    <stop offset="1"   stop-color="#F2B24B" stop-opacity="0.30"/>
+  </linearGradient>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="4" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <style><![CDATA[
+    .band  { font-family: 'Segoe UI','Helvetica Neue',Arial,sans-serif; }
+    .mono  { font-family: 'Consolas','SFMono-Regular',Menlo,monospace; }
+    .grid  { stroke:#1C2C40; stroke-width:1; }
+    .axis  { fill:#4A5A70; font-size:11px; font-family:'Consolas',monospace; }
+
+    @keyframes hop {
+      0%,14%  { transform: translateX(-360px); }
+      18%,32% { transform: translateX(-110px); }
+      36%,50% { transform: translateX(150px);  }
+      54%,68% { transform: translateX(380px);  }
+      72%,86% { transform: translateX(-30px);  }
+      90%,100%{ transform: translateX(-360px); }
+    }
+    .sig { animation: hop 6s infinite; }
+    .jam { animation: hop 6s infinite; animation-delay: -5.55s; }
+
+    @keyframes sweep { from { transform: translateX(-170px); } to { transform: translateX(1300px); } }
+    .sweep { animation: sweep 4.6s linear infinite; }
+
+    @keyframes nA { 0%,100%{opacity:.9} 50%{opacity:.35} }
+    @keyframes nB { 0%,100%{opacity:.3} 50%{opacity:.9}  }
+    @keyframes bob{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-2px)} }
+    .noiseA { animation: nA 1.1s ease-in-out infinite, bob .8s ease-in-out infinite; }
+    .noiseB { animation: nB 1.1s ease-in-out infinite, bob .9s ease-in-out infinite reverse; }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .blink { animation: blink 1.4s ease-in-out infinite; }
+    @keyframes gl { 0%,100%{opacity:.95} 50%{opacity:.65} }
+    .pulse { animation: gl 2.2s ease-in-out infinite; }
+  ]]></style>
+</defs>
+
+<rect x="1" y="1" width="1278" height="348" rx="16" fill="url(#bg)" stroke="#22344A" stroke-width="1.2"/>
+
+<!-- ızgara -->
+<g opacity="0.6"><line x1="60" y1="150" x2="60" y2="306" class="grid"/>
+<text x="60" y="322" class="axis" text-anchor="middle">30</text>
+<line x1="260" y1="150" x2="260" y2="306" class="grid"/>
+<text x="260" y="322" class="axis" text-anchor="middle">40</text>
+<line x1="460" y1="150" x2="460" y2="306" class="grid"/>
+<text x="460" y="322" class="axis" text-anchor="middle">50</text>
+<line x1="660" y1="150" x2="660" y2="306" class="grid"/>
+<text x="660" y="322" class="axis" text-anchor="middle">60</text>
+<line x1="860" y1="150" x2="860" y2="306" class="grid"/>
+<text x="860" y="322" class="axis" text-anchor="middle">70</text>
+<line x1="1060" y1="150" x2="1060" y2="306" class="grid"/>
+<text x="1060" y="322" class="axis" text-anchor="middle">80</text>
+<line x1="1220" y1="150" x2="1220" y2="306" class="grid"/>
+<text x="1220" y="322" class="axis" text-anchor="middle">88</text>
+<line x1="48" y1="186" x2="1232" y2="186" class="grid"/>
+<text x="1240" y="190" class="axis" text-anchor="start">-30</text>
+<line x1="48" y1="224" x2="1232" y2="224" class="grid"/>
+<text x="1240" y="228" class="axis" text-anchor="start">-60</text>
+<line x1="48" y1="262" x2="1232" y2="262" class="grid"/>
+<text x="1240" y="266" class="axis" text-anchor="start">-90</text>
+<line x1="48" y1="300" x2="1232" y2="300" class="grid"/>
+<text x="1240" y="304" class="axis" text-anchor="start">-120</text>
+</g>
+
+<!-- tarama çizgisi -->
+<g class="sweep"><rect x="0" y="150" width="150" height="154" fill="url(#sweepGrad)"/>
+  <line x1="150" y1="150" x2="150" y2="304" stroke="#F2B24B" stroke-opacity="0.5" stroke-width="1.5"/></g>
+
+<!-- gürültü tabanı (canlı) -->
+<polyline class="noiseB" points="48,290.1 65,294.7 82,292.6 99,295.1 116,298.7 133,293.0 150,294.0 167,291.1 184,292.4 201,296.4 218,294.0 235,299.2 252,294.7 269,294.7 286,295.5 303,293.2 320,294.1 337,290.8 354,289.2 371,293.9 388,291.5 405,293.2 422,295.6 439,295.4 456,296.4 473,294.1 490,293.5 507,292.7 524,294.9 541,293.6 558,291.6 575,294.5 592,294.3 609,290.8 626,294.9 643,293.8 660,292.9 677,298.5 694,291.1 711,292.6 728,292.0 745,294.3 762,290.3 779,297.4 796,290.5 813,294.6 830,295.2 847,297.3 864,292.0 881,290.1 898,294.7 915,295.3 932,294.2 949,298.2 966,294.4 983,295.0 1000,294.7 1017,290.3 1034,295.7 1051,288.6 1068,289.2 1085,297.8 1102,294.6 1119,292.3 1136,298.6 1153,291.4 1170,292.7 1187,288.2 1204,289.5 1221,293.4" fill="none" stroke="#B9822F" stroke-width="1.3"/>
+<polyline class="noiseA" points="48,293.7 65,295.5 82,289.0 99,297.0 116,295.5 133,297.8 150,292.2 167,292.5 184,291.5 201,292.2 218,289.6 235,294.7 252,291.3 269,295.7 286,296.1 303,293.5 320,292.5 337,293.9 354,290.2 371,294.7 388,289.8 405,289.4 422,296.8 439,293.8 456,299.3 473,299.8 490,296.4 507,291.7 524,289.8 541,290.2 558,295.0 575,293.9 592,293.0 609,291.1 626,294.0 643,293.5 660,289.5 677,290.4 694,290.7 711,292.5 728,294.3 745,295.8 762,298.6 779,293.1 796,290.3 813,291.2 830,289.9 847,293.5 864,293.6 881,293.2 898,291.8 915,297.6 932,295.6 949,294.5 966,294.5 983,295.8 1000,289.1 1017,291.5 1034,295.0 1051,297.3 1068,295.0 1085,294.0 1102,291.2 1119,290.2 1136,296.2 1153,298.1 1170,294.8 1187,295.2 1204,292.0 1221,295.4" fill="none" stroke="#F2B24B" stroke-width="1.4"/>
+
+<!-- takipçi karıştırıcı (bir adım geriden kovalar) -->
+<g class="jam">
+  <line x1="640" y1="164" x2="640" y2="302" stroke="#FF5468" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.9"/>
+  <text x="640" y="158" class="mono" font-size="10.5" fill="#FF5468" text-anchor="middle" letter-spacing="1">KARIŞTIRICI</text>
+</g>
+
+<!-- dostu sinyal (amber fosfor, hoplar) -->
+<g class="sig">
+  <path d="M568,300 C614,300 623,174 640,174 C657,174 666,300 712,300 Z" fill="url(#amberFill)" class="pulse"/>
+  <path d="M568,300 C614,300 623,174 640,174 C657,174 666,300 712,300 Z" fill="none" stroke="#F2B24B" stroke-width="2.4" filter="url(#glow)"/>
+  <path d="M640,163 L648,171 L640,179 L632,171 Z" fill="#35D6A4" stroke="#0A121C" stroke-width="1"/>
+  <text x="640" y="156" class="mono" font-size="10.5" fill="#35D6A4" text-anchor="middle" letter-spacing="1">LINK</text>
+</g>
+
+<!-- başlık -->
+<text x="60" y="94" class="band" font-size="62" font-weight="700" fill="#EAF1F9" letter-spacing="10">SPEKTRA</text>
+<rect x="63" y="106" width="150" height="4" rx="2" fill="#F2B24B"/>
+<text x="66" y="130" class="mono" font-size="13.5" fill="#F2B24B" letter-spacing="3.5">ELEKTRONİK HARP · RF SPEKTRUM &amp; KARIŞTIRMA ANALİZİ</text>
+
+<!-- sağ üst rozetler -->
+<g>
+  <rect x="980" y="42" width="152" height="30" rx="15" fill="#0A121C" stroke="#2A3B52"/>
+  <circle cx="1000" cy="57" r="4.5" fill="#35D6A4" class="blink"/>
+  <text x="1014" y="61" class="mono" font-size="12" fill="#D9E2EC" letter-spacing="1">LINK AKTİF</text>
+
+  <rect x="1144" y="42" width="76" height="30" rx="15" fill="#0A121C" stroke="#3A2E12"/>
+  <text x="1182" y="61" class="mono" font-size="12.5" fill="#F2B24B" text-anchor="middle" letter-spacing="1">v2.0</text>
+</g>
+
+<!-- eksen başlığı + imza -->
+<text x="48" y="142" class="mono" font-size="11" fill="#6B7A8F" letter-spacing="2">SPEKTRUM ANALİZÖRÜ — 30–88 MHz VHF</text>
+<text x="1232" y="142" class="mono" font-size="11" fill="#6B7A8F" text-anchor="end" letter-spacing="1">ANIL GÜL · 2026</text>
+</svg>

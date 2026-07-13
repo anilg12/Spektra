@@ -1,0 +1,348 @@
+/* ============================================================
+   SPEKTRA — Elektronik Harp konsol teması
+   Tasarım ve geliştirme: ANIL GÜL · 2026
+   Palet RF enstrümanlarından esinlenir: koyu arduvaz gövde,
+   sıcak amber fosfor iz rengi, yeşil/kırmızı yalnız durum için,
+   ikinci tehdit için mor.
+   ============================================================ */
+
+.root {
+    -void:     #070B12;
+    -surface:  #0E1520;
+    -surface2: #131C29;
+    -line:     #223044;
+    -text:     #D9E2EC;
+    -muted:    #6B7A8F;
+    -amber:    #F2B24B;
+    -cool:     #4FA8FF;
+    -ok:       #35D6A4;
+    -alert:    #FF5468;   /* Tehdit A */
+    -violet:   #C77DFF;   /* Tehdit B */
+
+    -fx-font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    -fx-focus-color: -amber;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ---------- Çerçeve ---------- */
+.app-root      { -fx-background-color: -void; }
+.center-stack  { -fx-background-color: -void; -fx-padding: 10; -fx-spacing: 10; }
+.right-col     { -fx-background-color: -surface; -fx-padding: 10; -fx-spacing: 10; }
+
+/* ---------- Menü çubuğu ---------- */
+.app-menu {
+    -fx-background-color: #0A1220;
+    -fx-border-color: transparent transparent -line transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 1 4 1 4;
+}
+.app-menu .menu .label {
+    -fx-text-fill: -text;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+}
+.app-menu .menu:hover,
+.app-menu .menu:focused,
+.app-menu .menu:showing { -fx-background-color: -surface2; -fx-background-radius: 4; }
+.app-menu .menu:showing .label { -fx-text-fill: -amber; }
+
+/* açılır menü gövdesi */
+.context-menu {
+    -fx-background-color: -surface2;
+    -fx-border-color: -line;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 4;
+}
+.context-menu .menu-item .label { -fx-text-fill: -text; -fx-font-size: 12px; }
+.context-menu .menu-item:focused { -fx-background-color: #22344A; -fx-background-radius: 4; }
+.context-menu .menu-item:focused .label { -fx-text-fill: -amber; }
+.context-menu .menu-item .accelerator-text { -fx-text-fill: -muted; -fx-font-family: "Consolas", monospace; }
+.context-menu .separator:horizontal .line {
+    -fx-border-color: -line transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ---------- Araç çubuğu ---------- */
+.app-toolbar {
+    -fx-background-color: linear-gradient(to bottom, #0C1826, #0A1220);
+    -fx-border-color: transparent transparent -line transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 7 10 7 10;
+    -fx-spacing: 8;
+}
+.app-toolbar .separator:vertical .line {
+    -fx-border-color: -line;
+    -fx-border-width: 0 1 0 0;
+}
+.app-toolbar .tool-bar-overflow-button > .arrow { -fx-background-color: -muted; }
+
+.brand-name {
+    -fx-text-fill: -text;
+    -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif;
+    -fx-font-size: 20px;
+}
+.brand-sub {
+    -fx-text-fill: -amber;
+    -fx-font-family: "Bahnschrift", sans-serif;
+    -fx-font-size: 10px;
+}
+.tool-tag {
+    -fx-text-fill: -muted;
+    -fx-font-family: "Bahnschrift", sans-serif;
+    -fx-font-size: 10px;
+    -fx-padding: 0 2 0 4;
+}
+
+/* araç çubuğundaki seçim kutuları */
+.app-toolbar .combo-box, .type-combo {
+    -fx-background-color: -surface2;
+    -fx-border-color: -line;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-pref-height: 30;
+}
+.app-toolbar .combo-box:hover, .type-combo:hover { -fx-border-color: -cool; }
+.app-toolbar .combo-box .list-cell, .type-combo .list-cell {
+    -fx-text-fill: -text;
+    -fx-background-color: transparent;
+    -fx-padding: 4 6 4 8;
+    -fx-font-family: "Bahnschrift", sans-serif;
+    -fx-font-size: 12px;
+}
+.app-toolbar .combo-box .arrow, .type-combo .arrow { -fx-background-color: -muted; }
+.app-toolbar .combo-box .arrow-button, .type-combo .arrow-button { -fx-background-color: transparent; }
+
+/* açılır liste (tüm combo'lar için ortak) */
+.combo-box-popup .list-view { -fx-background-color: -surface2; -fx-border-color: -line; }
+.combo-box-popup .list-cell { -fx-text-fill: -text; -fx-background-color: -surface2; -fx-padding: 5 10 5 10; -fx-font-size: 12px; }
+.combo-box-popup .list-cell:filled:hover    { -fx-background-color: #1B2A3D; }
+.combo-box-popup .list-cell:filled:selected { -fx-background-color: #22344A; -fx-text-fill: -amber; }
+
+/* araç çubuğu düğmeleri */
+.tool-btn {
+    -fx-background-color: -surface2;
+    -fx-text-fill: -text;
+    -fx-border-color: -line;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 8 12 8 12;
+    -fx-cursor: hand;
+}
+.tool-btn:hover { -fx-border-color: -amber; -fx-text-fill: -amber; }
+
+/* ---------- Durum çubuğu (alt) ---------- */
+.status-bar {
+    -fx-background-color: #0A1220;
+    -fx-border-color: -line transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 5 12 5 12;
+}
+.status-metric { -fx-text-fill: -text;  -fx-font-family: "Consolas", "Cascadia Mono", monospace; -fx-font-size: 12px; }
+.credit        { -fx-text-fill: -muted; -fx-font-family: "Bahnschrift", sans-serif; -fx-font-size: 10px; }
+
+/* ---------- Enstrümanlar (canvas paneller) ---------- */
+.instrument {
+    -fx-background-color: -surface;
+    -fx-border-color: -line;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+/* ---------- Yan paneller + kaydırma ---------- */
+.control-panel, .metrics-panel { -fx-background-color: -surface; }
+.control-panel { -fx-padding: 10; -fx-spacing: 10; }
+
+.side-scroll {
+    -fx-background-color: -surface;
+    -fx-background: -surface;
+    -fx-border-color: -line;
+    -fx-border-width: 0 1 0 1;
+}
+.side-scroll > .viewport { -fx-background-color: -surface; }
+.side-scroll .scroll-bar { -fx-background-color: transparent; }
+.side-scroll .scroll-bar .track { -fx-background-color: transparent; }
+.side-scroll .scroll-bar .thumb { -fx-background-color: #24344A; -fx-background-radius: 6; }
+.side-scroll .scroll-bar .thumb:hover { -fx-background-color: #33475F; }
+.side-scroll .scroll-bar .increment-button,
+.side-scroll .scroll-bar .decrement-button { -fx-opacity: 0; -fx-padding: 0 6 0 0; }
+
+/* ---------- Kart bloğu ---------- */
+.card {
+    -fx-background-color: -surface2;
+    -fx-background-radius: 8;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+    -fx-padding: 10 12 12 12;
+}
+.panel-title {
+    -fx-text-fill: -amber;
+    -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 0 0 2 0;
+}
+.section-title {
+    -fx-text-fill: -amber;
+    -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 6 0 4 0;
+    -fx-border-color: transparent transparent -line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.field-label { -fx-text-fill: -muted; -fx-font-size: 11px; }
+.muted       { -fx-text-fill: -muted; -fx-font-size: 11px; -fx-line-spacing: 1; }
+
+/* ---------- Tehdit sekmeleri (A / B) ---------- */
+.threat-tabs { -fx-background-color: transparent; }
+.threat-tabs > .tab-header-area { -fx-padding: 0; }
+.threat-tabs > .tab-header-area > .tab-header-background { -fx-background-color: transparent; }
+.threat-tabs .tab {
+    -fx-background-color: -surface;
+    -fx-background-radius: 5 5 0 0;
+    -fx-border-color: -line;
+    -fx-border-width: 1 1 0 1;
+    -fx-border-radius: 5 5 0 0;
+    -fx-padding: 5 14 5 14;
+}
+.threat-tabs .tab:selected { -fx-background-color: #16212F; -fx-border-color: -amber -line transparent -line; }
+.threat-tabs .tab .tab-label {
+    -fx-text-fill: -muted;
+    -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif;
+    -fx-font-size: 11px;
+}
+.threat-tabs .tab:selected .tab-label { -fx-text-fill: -amber; }
+.threat-tabs > .tab-content-area { -fx-background-color: transparent; -fx-padding: 8 0 0 0; }
+.threat-tabs .focus-indicator { -fx-border-width: 0; -fx-border-color: transparent; }
+
+/* ---------- Kaydıraçlar ---------- */
+.slider-row  { -fx-padding: 3 0 3 0; }
+.slider-name { -fx-text-fill: -muted; -fx-font-size: 11px; }
+.slider-val  { -fx-text-fill: -text;  -fx-font-family: "Consolas", "Cascadia Mono", monospace; -fx-font-size: 11px; }
+.param-slider .track {
+    -fx-background-color: #0A0F17;
+    -fx-border-color: -line;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-pref-height: 5;
+}
+.param-slider .thumb {
+    -fx-background-color: -amber;
+    -fx-background-radius: 9;
+    -fx-pref-width: 14; -fx-pref-height: 14;
+    -fx-effect: dropshadow(gaussian, rgba(242,178,75,0.45), 6, 0, 0, 0);
+}
+.param-slider .thumb:hover { -fx-background-color: derive(-amber, 18%); }
+
+/* ---------- Segment düğmesi (mod seçimi) ---------- */
+.segmented {
+    -fx-background-color: -surface2;
+    -fx-background-radius: 6;
+    -fx-border-color: -line;
+    -fx-border-radius: 6;
+    -fx-padding: 3;
+    -fx-spacing: 3;
+}
+.seg-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -muted;
+    -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4;
+    -fx-padding: 6 0 6 0;
+    -fx-cursor: hand;
+}
+.seg-btn:hover    { -fx-text-fill: -text; }
+.seg-btn:selected { -fx-background-color: -amber; -fx-text-fill: #0A0F17; }
+
+/* ---------- Bağlantı durum karosu ---------- */
+.status-tile {
+    -fx-background-color: #0A121C;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 14 12 14 12;
+}
+.status-tile.up   { -fx-border-color: -ok;    -fx-background-color: rgba(53,214,164,0.06); }
+.status-tile.down { -fx-border-color: -alert; -fx-background-color: rgba(255,84,104,0.07); }
+.status-big {
+    -fx-text-fill: -text;
+    -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif;
+    -fx-font-size: 22px;
+}
+.status-tile.up   .status-big { -fx-text-fill: -ok; }
+.status-tile.down .status-big { -fx-text-fill: -alert; }
+.status-sub { -fx-text-fill: -muted; -fx-font-family: "Consolas", monospace; -fx-font-size: 12px; }
+
+/* ---------- Ölçerler (SJNR / PDR) ---------- */
+.meter-name { -fx-text-fill: -muted; -fx-font-size: 11px; }
+.meter-val  { -fx-text-fill: -text; -fx-font-family: "Consolas", monospace; -fx-font-size: 12px; }
+.meter-track {
+    -fx-background-color: #0A0F17;
+    -fx-background-radius: 4;
+    -fx-border-color: -line;
+    -fx-border-radius: 4;
+    -fx-min-height: 9; -fx-pref-height: 9;
+    -fx-alignment: center-left;
+}
+.meter-fill { -fx-background-radius: 3; -fx-background-insets: 1; }
+.pdr-fill  { -fx-background-color: -ok; }
+.sjnr-fill { -fx-background-color: -amber; }
+
+/* ---------- Anahtar/değer telemetrisi ---------- */
+.tele-row {
+    -fx-padding: 5 2 5 2;
+    -fx-border-color: transparent transparent rgba(34,48,68,0.5) transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.tele-key { -fx-text-fill: -muted; -fx-font-size: 12px; }
+.tele-val { -fx-text-fill: -text;  -fx-font-family: "Consolas", monospace; -fx-font-size: 12px; }
+
+.threat-line { -fx-text-fill: -text; -fx-font-family: "Consolas", monospace; -fx-font-size: 12px; }
+.verdict     { -fx-text-fill: #AEBED2; -fx-font-size: 12px; -fx-padding: 6 2 2 2; -fx-line-spacing: 2; }
+
+/* ---------- Olay günlüğü ---------- */
+.event-log .list-view { -fx-background-color: #0A121C; -fx-border-color: -line; -fx-background-radius: 6; -fx-border-radius: 6; -fx-padding: 2; }
+.event-log .list-view .viewport { -fx-background-color: #0A121C; }
+.event-log .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9FB0C4;
+    -fx-font-family: "Consolas", "Cascadia Mono", monospace;
+    -fx-font-size: 11px;
+    -fx-padding: 2 6 2 6;
+}
+.event-log .list-cell:filled:hover { -fx-background-color: #14202E; }
+.event-log .list-view .scroll-bar { -fx-background-color: transparent; }
+.event-log .list-view .scroll-bar .thumb { -fx-background-color: #24344A; -fx-background-radius: 6; }
+.event-log .list-view .scroll-bar .increment-button,
+.event-log .list-view .scroll-bar .decrement-button { -fx-opacity: 0; }
+
+/* ---------- Hakkında / Kullanım diyaloğu ---------- */
+.dialog-root {
+    -fx-background-color: linear-gradient(to bottom, #0E1826, #080E18);
+    -fx-border-color: -amber;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 22 26 20 26;
+}
+.dialog-h1  { -fx-text-fill: -text;  -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif; -fx-font-size: 30px; }
+.dialog-sub { -fx-text-fill: -amber; -fx-font-family: "Bahnschrift", sans-serif; -fx-font-size: 12px; }
+.dialog-body, .dialog-p { -fx-text-fill: #9FB0C4; -fx-font-size: 12px; -fx-line-spacing: 3; }
+.dialog-k   { -fx-text-fill: -muted; -fx-font-family: "Consolas", monospace; -fx-font-size: 11px; }
+.dialog-v   { -fx-text-fill: -text;  -fx-font-size: 12px; }
+.dialog-credit { -fx-text-fill: -amber; -fx-font-family: "Bahnschrift", "Segoe UI Semibold", sans-serif; -fx-font-size: 14px; }
+.dialog-close {
+    -fx-background-color: -surface2;
+    -fx-text-fill: -text;
+    -fx-border-color: -line;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-family: "Bahnschrift", sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 7 18 7 18;
+    -fx-cursor: hand;
+}
+.dialog-close:hover { -fx-border-color: -amber; -fx-text-fill: -amber; }
